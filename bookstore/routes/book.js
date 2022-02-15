@@ -4,7 +4,13 @@ var Book = require("../models/book");
 
 
 router.get( '/', ( req, res )=>{
-    res.render( "books" )
+    //* fetch list of books from database it display all
+    Book.find( {}, ( err, books ) => {
+        //* if err pass it to error handler
+        if ( err ) return next( err );
+        //* render data on ejs with dynamic data
+        res.render( "books", { books: books } );
+    } );
 } )
 
 router.get( '/new', ( req, res )=>{
@@ -19,7 +25,15 @@ router.post( '/', ( req, res, next )=>{
     } );
     //* send response
     res.redirect( '/books' );
-} )
+} );
+
+router.get( '/book/id', ( req, res, next ) => {
+    var id = req.params.id;
+    Book.findById( id, ( err, book ) => {
+        if ( err ) return next( err );
+        res.render( 'bookDetails', { book: book } )
+    } );
+} );
 
 
 module.exports = router;

@@ -5,7 +5,7 @@ var bookSchema = new Schema({
     title: { type: String, required: true },
     description: String,
     price: Number,
-    author: String
+    author: String,
 }, { timestamps: true } );
 
 var Book = mongoose.model( "Book", bookSchema );

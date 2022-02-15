@@ -1,22 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>Document</title>
-</head>
-<body>
-    <header class="flex justify-between h-12 items-center bg-purple-300">
-        <a href="">
-            <h2 class="text-blue-600 text-center font-bold px-4">Bookstore</h2>
-        </a>
-        <nav>
-            <a href="books/new">
-                <button class="bg-green-300 mr-3 hover:bg-purple-300 text-white font-bold py-2 px-4 rounded">Add Book</button>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <title>Document</title>
+    </head>
+    <body>
+        <header class="flex justify-between h-12 items-center bg-purple-300">
+            <a href="">
+                <h2 class="text-blue-600 text-center font-bold px-4">Bookstore</h2>
             </a>
-        </nav>
-    </header>
-</body>
+            <nav>
+                <a href="books/new">
+                    <button class="bg-green-300 mr-3 hover:bg-purple-300 text-white font-bold py-2 px-4 rounded">Add Book</button>
+                </a>
+            </nav>
+        </header>
+        <div class="xxl:container bg-white p-4">
+            <h1 class="text-purple-500 text-center m-3">Lising Books</h1>
+            <%books.forEach((book)=>{ %> 
+                <section class="container mx-auto bg-lime-200 p-2">
+                    <div class="mb-3 border-b border-gray-400">
+                        <h4 class="text-blue-400"><%= book.title %></h4>
+                        <p class="text-red-500 pb-1"><%= book.author %></p>
+                        <p class="text-orange-500 pb-3"><%= book.description.substr( 0, 200 ) + "..." %></p>
+                        <a href="/books/<%= book._id %>">
+                            <button class="btn-green mb-3">
+                                    Show
+                            </button>
+                        </a>
+                    </div>
+                </section>
+            <% }) %>
+        </div>
+    </body>
 </html>
