@@ -27,7 +27,7 @@ router.post( '/', ( req, res, next )=>{
     res.redirect( '/books' );
 } );
 
-router.get( '/book/id', ( req, res, next ) => {
+router.get( '/:id', ( req, res, next ) => {
     var id = req.params.id;
     Book.findById( id, ( err, book ) => {
         if ( err ) return next( err );
@@ -35,5 +35,32 @@ router.get( '/book/id', ( req, res, next ) => {
     } );
 } );
 
+router.put( '/:id/edit', ( req, res, next ) => {
+    //* find book details 
+    var id = req.params.id;
+    Book.findById( id, ( err, book ) => {
+        if ( err ) return next( err );
+        res.render( 'editBookForm', { book: book } )
+    } );
+    //* render a update form
+} );
+
+router.post( '/:id', ( req, res, next ) => {
+    //* capture update data
+    //* using id find the book and update it with data comming from the form
+    var id = req.params.id;
+    Book.findByIdAndUpdate( id, req.body, ( err, updatedBook ) => {
+        if ( err ) return next( err );
+        res.redirect( '/books/' + id );
+    } );
+} );
+
+router.get( '/:id/delete', ( req, res, next ) => {
+    var id = req.params.id;
+    Book.findByIdAndDelete( id, ( err, book ) => {
+        if ( err ) return next( err );
+        res.redirect( '/books' );
+    } )
+} )
 
 module.exports = router;

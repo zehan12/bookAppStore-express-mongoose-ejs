@@ -1,5 +1,5 @@
 {
-  "name": "sample",
+  "name": "bookstore",
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
@@ -10,9 +10,13 @@
   "license": "ISC",
   "dependencies": {
     "chalk": "^2.4.1",
-    "ejs": "^3.1.6",
     "express": "^4.17.2",
     "mongoose": "^6.2.1",
     "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.9.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4"
   }
 }

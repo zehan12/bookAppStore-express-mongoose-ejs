@@ -25,6 +25,12 @@
         <h3 class="text-blue-500 pb-3"><%= book.author %></h3>
         <p class="text-gray-500"><%= book.description %></p>
         <h3 class="text-orange-500 py-2">Price:<%= book.price %></h3>
+        <a href="/books/<%=book._id %>/edit">
+            <button class="btn-blue mr-3">Edit</button>
+        </a>
+        <a href="/books/<%=book._id %>/delete">
+            <button class="btn-red mr-3">Edit</button>
+        </a>
     </div>
 </body>
 </html>
