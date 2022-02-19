@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Book = require("../models/book");
+var Comment = require("../models/comment");
 
 
 router.get( '/', ( req, res )=>{
@@ -61,6 +62,20 @@ router.get( '/:id/delete', ( req, res, next ) => {
         if ( err ) return next( err );
         res.redirect( '/books' );
     } )
-} )
+} );
+
+//? comment routes
+
+//! add comment
+router.post( '/:id/comments', ( req, res, next ) => {
+    //* adding book id into comment
+    var id = req.params.id;
+    req.body.BookId = id;
+    Comment.create( req.body, ( err, comment ) => {
+        if ( err ) return next( err );
+        res.redirect( '/books/' + id );
+    } )
+
+} );
 
 module.exports = router;
